@@ -12,6 +12,6 @@ export class PeopleListComponent {
   people: any;
 
   async ngOnInit() {
-    this.people = await this.peopleService.getPeople();
+    this.people = await this.peopleService.people;
   }
 }

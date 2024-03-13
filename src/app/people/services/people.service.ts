@@ -5,38 +5,20 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PeopleService {
+  http = inject(HttpClient);
 
-  http = inject(HttpClient)
-  people: any;
-
-  async getPeople() {
-    const result = await firstValueFrom(this.http.get(`${environment.apiUrl}/people`));
+  get people(): Promise<Person[]> {
     // @ts-ignore
-    this.people = result.results;
-    return this.people;
+    return firstValueFrom(this.http.get(`${environment.apiUrl}/people`));
   }
 
+  async addPerson(name: string, description: string): Promise<Person> {
+    const person = await firstValueFrom(this.http.post(`${environment.apiUrl}/people`, { name: name, description: description }));
+    // @ts-ignore
+    return person;
+  }
 
-  // get people() : Promise<Person[]> {
-  //   const somePeople = fetch(`${environment.apiUrl}/people`)
-  //   .then((res) => res.json())
-  //   .then((result) => result.results);
-  //   return somePeople;
-  // }
-
-  // people: Person[] = [
-  //   {
-  //     uid: "100",
-  //     name: "Darth Maul",
-  //     url: "Some URL"
-  //   },
-  //   {
-  //     uid: "200",
-  //     name: "Emperor Palpatine",
-  //     url: "Some other url"
-  //   }
-  // ]
 }

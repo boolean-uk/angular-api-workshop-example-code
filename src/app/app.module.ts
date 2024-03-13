@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PeopleModule } from './people/people.module';
-import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [

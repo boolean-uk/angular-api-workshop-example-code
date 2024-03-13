@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://swapi.tech/api',
+  apiUrl: 'http://localhost:3000',
 };
